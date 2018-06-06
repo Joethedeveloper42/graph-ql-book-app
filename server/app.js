@@ -5,6 +5,7 @@ const schema = require('./schema/schema');
 const mongoose = require('mongoose');
 const mongoDetails = require('./privateInfo');
 const cors = require('cors');
+const PORT = '4000';
 
 //allow cross origin requests
 app.use(cors());
@@ -13,8 +14,6 @@ mongoose.connect(`mongodb://${mongoDetails.username}:${mongoDetails.password}@ds
 mongoose.connection.once('open', () => {
   console.log("connected to external MongoDB database");
 });
-
-const PORT = '4000';
 
 app.use('/graphql', graphqlHTTP({
   schema: schema,
